@@ -1,46 +1,70 @@
 from fastapi import FastAPI, File, UploadFile, Form
-from fastapi.responses import JSONResponse
-import shutil
+from pydantic import BaseModel
+from PIL import Image
+import io
 import os
+from datetime import datetime
 
 app = FastAPI()
 
-@app.post("/analyze/")
+class SkinInfo(BaseModel):
+    name: str
+    skin_type: str
+
+# Create uploads directory if it doesn't exist
+UPLOAD_DIR = "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+@app.post("/analyze")
 async def analyze_skin(
+    image: UploadFile = File(...),
     name: str = Form(...),
-    skin_type: str = Form(...),
-    file: UploadFile = File(...)
+    skin_type: str = Form(...)
 ):
-    # Save the uploaded file
-    file_location = f"uploaded_images/{file.filename}"
+    # Read the image file
+    image_content = await image.read()
     
-    # Ensure the upload directory exists
-    os.makedirs(os.path.dirname(file_location), exist_ok=True)
+    # Option 1: Process image directly from memory
+    image_stream = io.BytesIO(image_content)
+    img = Image.open(image_stream)
     
-    with open(file_location, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    #AI MODEL AND 
-    treatment_plan = "Your AI model will generate a treatment plan based on the uploaded image."
-
-    return JSONResponse(content={
-        "message": "Image uploaded and analyzed successfully",
-        "name": name,
-        "skin_type": skin_type,
-        "treatment_plan": treatment_plan
-    })
-
-# Optionally, if you want to see if the server is running
-@app.get("/")
-async def read_root():
-    return {"message": "Welcome to the Skin Analysis API!"}
-
-@app.get("/history/{name}")
-async def get_skin_analysis_history(name: str):
-    # Retrieve the analysis records for the given user name
-   
+    # Get basic image information
+    image_info = {
+        "format": img.format,
+        "size": img.size,
+        "mode": img.mode,
+        "width": img.width,
+        "height": img.height,
+        "aspect_ratio": round(img.width / img.height, 2),
+        "file_size_kb": round(len(image_content) / 1024, 2)
+    }
     
-    if not "write code here":
-        return JSONResponse(content={"message": "No history found for this user."}, status_code=404)
+    # Option 2: Save file and get path (useful if your ML model needs a file path)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{timestamp}_{image.filename}"
+    filepath = os.path.join(UPLOAD_DIR, filename)
     
-    return JSONResponse(content={"history": "not thing"})
+    with open(filepath, "wb") as f:
+        f.write(image_content)
+    
+    # Create response with both options
+    response = {
+        "user_info": {
+            "name": name,
+            "skin_type": skin_type
+        },
+        "image_info": image_info,
+        "saved_file_path": filepath
+    }
+    
+    # Here you would typically call your ML model
+    # Example:
+    # results = your_model.process_image(filepath)  # if model needs file path
+    # or
+    # results = your_model.process_image(image_content)  # if model accepts bytes
+    
+    return response
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
