@@ -1,0 +1,36 @@
+#root {
+  /* Remove max-width to allow full width */
+  width: 100%; /* Ensure it takes the full width */
+  margin: 0; /* Remove auto margin to prevent centering */
+  padding: 0; /* Remove padding to use full height and width */
+  text-align: center; /* Keep text centered */
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em; /* Adjust if needed, this is fine for logo spacing */
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.card {
+  /* Consider using flex for the card if you want to center content */
+  display: flex; /* Enables flex layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 0; /* Remove padding to maximize space */
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.mirror {
+  transform: scaleX(-1); /* Flips the image horizontally */
+}
