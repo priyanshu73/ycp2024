@@ -32,7 +32,7 @@ function App() {
                 text="Dermafyr"
                 className="text-8xl mb-2 transition-none"
               />
-              <GradientButton buttonName="Get Started" to="/camera" />{" "}
+              <GradientButton buttonName="Get Started" to="/form" />{" "}
               {/* Updated to use to */}
             </div>) : <h1>not an electron</h1>
           }
