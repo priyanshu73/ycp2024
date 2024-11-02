@@ -1,3 +1,6 @@
 fastapi
 uvicorn
 Pillow
+sqlalchemy
+pymysql
+python-dotenv
