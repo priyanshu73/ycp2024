@@ -24,3 +24,5 @@ def get_skin_analysis(analysis_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Skin analysis not found")
     
     return db_analysis
+
+

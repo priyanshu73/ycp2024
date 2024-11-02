@@ -20,11 +20,18 @@ app = FastAPI(title="Skin Analysis API")
 # Include user routes
 app.include_router(user.router, prefix="/api")
 
-@app.post("/analyze")
+# case 1: one endpoint without userinfo, only the image + extra info(age and stuff)
+# case 2: one endpoint with userinfo, image + extra info(age and stuff)
+
+# case 2
+@app.post("/userInfo")
 async def analyze_skin(
     image: UploadFile = File(...),
     name: str = Form(...),
-    skin_type: str = Form(...)
+    skin_type: str = Form(...),
+    # remote email later, this is for the store setup
+    email: str = Form(...),
+    age: int = Form(...)
 ):
     try:
         # Read the image file
@@ -58,7 +65,9 @@ async def analyze_skin(
             "message": "Image successfully processed",
             "user_data": {
                 "name": name,
-                "skin_type": skin_type
+                "skin_type": skin_type,
+                "email": email,
+                "age": age
             },
             "image_data": image_info
         }
