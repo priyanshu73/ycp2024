@@ -21,49 +21,50 @@ async def analyze_skin(
     name: str = Form(...),
     skin_type: str = Form(...)
 ):
-    # Read the image file
-    image_content = await image.read()
-    
-    # Option 1: Process image directly from memory
-    image_stream = io.BytesIO(image_content)
-    img = Image.open(image_stream)
-    
-    # Get basic image information
-    image_info = {
-        "format": img.format,
-        "size": img.size,
-        "mode": img.mode,
-        "width": img.width,
-        "height": img.height,
-        "aspect_ratio": round(img.width / img.height, 2),
-        "file_size_kb": round(len(image_content) / 1024, 2)
-    }
-    
-    # Option 2: Save file and get path (useful if your ML model needs a file path)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"{timestamp}_{image.filename}"
-    filepath = os.path.join(UPLOAD_DIR, filename)
-    
-    with open(filepath, "wb") as f:
-        f.write(image_content)
-    
-    # Create response with both options
-    response = {
-        "user_info": {
-            "name": name,
-            "skin_type": skin_type
-        },
-        "image_info": image_info,
-        "saved_file_path": filepath
-    }
-    
-    # Here you would typically call your ML model
-    # Example:
-    # results = your_model.process_image(filepath)  # if model needs file path
-    # or
-    # results = your_model.process_image(image_content)  # if model accepts bytes
-    
-    return response
+    try:
+        # Read the image file
+        image_content = await image.read()
+        
+        # Process image and get basic information
+        image_stream = io.BytesIO(image_content)
+        img = Image.open(image_stream)
+        
+        filepath = os.path.join(UPLOAD_DIR, image.filename)
+        
+        # Save the image
+        with open(filepath, "wb") as f:
+            f.write(image_content)
+        #AI PART
+        
+        # Basic image information for testing
+        image_info = {
+            "filename": image.filename,
+            "content_type": image.content_type,
+            "format": img.format,
+            "size": img.size,
+            "width": img.width,
+            "height": img.height,
+            "file_size_kb": round(len(image_content) / 1024, 2)
+        }
+        
+        # Test response
+        response = {
+            "status": "success",
+            "message": "Image successfully processed",
+            "user_data": {
+                "name": name,
+                "skin_type": skin_type
+            },
+            "image_data": image_info
+        }
+        
+        return response
+        
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 @app.get("/health")
 async def health_check():
