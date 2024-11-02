@@ -1,0 +1,72 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const SkinAnalysisForm = () => {
+  const [file, setFile] = useState(null);
+  const [name, setName] = useState('');
+  const [skinType, setSkinType] = useState('');
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', name);
+    formData.append('skin_type', skinType);
+
+    try {
+      // Send a POST request to your FastAPI endpoint
+      const response = await axios.post('http://127.0.0.1:8000/analyze/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.error('Error uploading the image:', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="skin-type">Skin Type:</label>
+        <input
+          type="text"
+          id="skin-type"
+          value={skinType}
+          onChange={(e) => setSkinType(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="file">Upload Image:</label>
+        <input
+          type="file"
+          id="file"
+          onChange={handleFileChange}
+          accept="image/*"
+          required
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default SkinAnalysisForm;
