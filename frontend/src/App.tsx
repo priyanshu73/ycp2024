@@ -7,8 +7,9 @@ import CameraPage from "./Components/CameraPage";
 import FormPage from "./Components/FormPage";
 import Login from "./Components/Login";
 import { Auth0ProviderWithNavigate } from "./auth/auth-provider";
-// // import { getConfig } from './config'; // Import getConfig function from config.ts
-// // import { isElectron } from "./environment";
+import ReportPage from "./Components/ReportPage";
+import SkincareAnalysisDashboard from "./Components/SkincareAnalysisDashboard"
+
 
 function App() {
   const [isElectronApp, setIsElectronApp] = React.useState<boolean>(false);
@@ -51,6 +52,7 @@ function App() {
         />
         <Route path="/camera" element={<CameraPage />} />
         <Route path="/form" element={<FormPage />} />
+        <Route path="/report" element={<SkincareAnalysisDashboard />} />
       </Routes>
       </Auth0ProviderWithNavigate>
     </Router>

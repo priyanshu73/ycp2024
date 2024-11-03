@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import NumberCircles from "./NumberCircles";
 import GradientButton from "./GradientButtonOnClick";
 import RadioButtonGroup from "./RadioButtonGroup";
+import { useNavigate } from "react-router-dom";
 
 function FormPage() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center h-screen w-screen items-center space-y-10 p-6 bg-gray-200 gap-4 font-menlo">
       <div>
@@ -24,7 +26,12 @@ function FormPage() {
         </p>
         <RadioButtonGroup />
       </div>
-      <GradientButton buttonName="Submit" onClick={() => {}} />
+      <GradientButton
+        buttonName="Submit"
+        onClick={() => {
+          navigate("/report");
+        }}
+      />
     </div>
   );
 }

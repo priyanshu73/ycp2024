@@ -40,6 +40,21 @@
     -1px 0px 1px gray;
 }
 
+.text-min-width {
+  width: 500px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .btn {
   transition: color 250ms ease-out, box-shadow 250ms ease-in;
   position: relative; /* Ensure positioning for other potential styles */
