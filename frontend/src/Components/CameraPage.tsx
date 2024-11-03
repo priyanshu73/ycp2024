@@ -4,10 +4,11 @@ import GradientButton from "./GradientButtonOnClick";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import GradientText from "./GradientText";
 
 const videoConstraints = {
-  width: 400,
-  height: 400,
+  width: 100,
+  height: 100,
   facingMode: "user",
 };
 
@@ -133,17 +134,22 @@ export const CameraPage: React.FC = () => {
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-gray-200 gap-4 font-menlo">
       {/* Header Text */}
       {/* Webcam or Captured Image */}
-      <motion.span className="bg-gradient-to-r from-purple-600 via-red-500 to-amber-400 bg-clip-text text-transparent text-3xl mb-2">
-        Dermafyr
-      </motion.span>
+      <header className="text-center mb-8">
+        <div className="text-2xl">
+          <GradientText text="Analyze Your Skin with Our Camera Tool" />
+        </div>
+        <p className="text-gray-600">
+          Capture a clear photo to help our AI understand your skin condition.
+        </p>
+      </header>
       <div className="webcam-container">
         {image === "" ? (
           <Webcam
             audio={false}
-            height={400}
+            height={600}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={400}
+            width={600}
             videoConstraints={videoConstraints}
             className="mirror rounded-md border-2 shadow-lg border-white"
           />

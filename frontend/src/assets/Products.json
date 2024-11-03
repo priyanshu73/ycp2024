@@ -1,0 +1,137 @@
+[
+  {
+    "name": "CeraVe Moisturizing Lotion",
+    "price": 15.99,
+    "description": "Lightweight, oil-free moisturizer with 3 essential ceramides and hyaluronic acid",
+    "keyIngredients": ["Ceramides", "Hyaluronic Acid", "Glycerin"],
+    "bestFor": "Daily hydration",
+    "useTime": "Morning and evening",
+    "image": "https://www.lookfantastic.com/images?url=https://static.thcdn.com/productimg/1600/1600/11798695-3274774893056304.jpg&format=webp&auto=avif&width=985&height=985&fit=cover"
+  },
+  {
+    "name": "Neutrogena Hydro Boost Gel-Cream",
+    "price": 19.99,
+    "description": "Intense hydration with hyaluronic acid, suitable for dry skin",
+    "keyIngredients": ["Hyaluronic Acid", "Glycerin"],
+    "bestFor": "Dry skin hydration",
+    "useTime": "Morning and evening",
+    "image": "https://www.lookfantastic.com/images?url=https://static.thcdn.com/productimg/original/11433774-1915132307949443.jpg&format=webp&auto=avif&width=985&height=985&fit=cover"
+  },
+  {
+    "name": "The Ordinary Niacinamide 10% + Zinc 1%",
+    "price": 5.9,
+    "description": "High-strength vitamin and mineral blemish formula",
+    "keyIngredients": ["Niacinamide", "Zinc PCA"],
+    "bestFor": "Reducing blemishes",
+    "useTime": "Morning and evening",
+    "image": "https://www.lookfantastic.com/images?url=https://static.thcdn.com/productimg/original/13187076-1825188502528313.jpg&format=webp&auto=avif&width=985&height=985&fit=cover"
+  },
+  {
+    "name": "La Roche-Posay Toleriane Double Repair Face Moisturizer",
+    "price": 19.99,
+    "description": "Moisturizer with ceramide and niacinamide, suitable for sensitive skin",
+    "keyIngredients": ["Ceramide", "Niacinamide"],
+    "bestFor": "Sensitive skin",
+    "useTime": "Morning and evening",
+    "image": "https://m.media-amazon.com/images/I/51+IHPKXFIL.jpg"
+  },
+  {
+    "name": "Aveeno Positively Radiant Daily Moisturizer SPF 15",
+    "price": 13.99,
+    "description": "Brightens and evens skin tone with soy complex, contains SPF",
+    "keyIngredients": ["Soy Complex", "Octinoxate"],
+    "bestFor": "Brightening skin tone",
+    "useTime": "Morning",
+    "image": "https://m.media-amazon.com/images/I/710bqLJEBzL.jpg"
+  },
+  {
+    "name": "Olay Regenerist Micro-Sculpting Cream",
+    "price": 25.99,
+    "description": "Anti-aging cream with hyaluronic acid and peptides",
+    "keyIngredients": ["Hyaluronic Acid", "Amino-Peptide Complex"],
+    "bestFor": "Anti-aging",
+    "useTime": "Morning and evening",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ7fHkf0_WcP2MCPappXcYf3_vGngDFoP6Riev_nSG0Wwy32Jx_FH0dVEg1ejcMUZ1zLtM53QxYA9pCHaVHvU6ULVTzQwldHPib1uBi_e_RO2GeXj3uIMux"
+  },
+  {
+    "name": "Cetaphil Gentle Skin Cleanser",
+    "price": 10.49,
+    "description": "Mild, non-irritating cleanser for all skin types",
+    "keyIngredients": ["Cetyl Alcohol", "Propylene Glycol"],
+    "bestFor": "Sensitive skin cleansing",
+    "useTime": "Morning and evening",
+    "image": "https://i5.walmartimages.com/seo/Cetaphil-Face-Wash-Hydrating-Gentle-Skin-Cleanser-for-Dry-to-Normal-Sensitive-Skin-16-oz_b6481e8f-7b0d-4d17-8b13-d30f1ca2184b.5693cce355ba9ec34f47b5e3dda92924.jpeg"
+  },
+  {
+    "name": "Drunk Elephant C-Firma Fresh Vitamin C Day Serum",
+    "price": 78.0,
+    "description": "Powerful antioxidant complex with Vitamin C and ferulic acid",
+    "keyIngredients": ["Vitamin C", "Ferulic Acid"],
+    "bestFor": "Brightening and firming",
+    "useTime": "Morning",
+    "image": "https://www.drunkelephant.com/dw/image/v2/BBSK_PRD/on/demandware.static/-/Sites-itemmaster_drunkelephant/default/dwe8bf79bf/products/images/PLP-primary-image/C-Firma.png?sw=540&sh=540&sm=fit"
+  },
+  {
+    "name": "EltaMD UV Clear Broad-Spectrum SPF 46",
+    "price": 36.0,
+    "description": "Lightweight, oil-free sunscreen ideal for acne-prone skin",
+    "keyIngredients": ["Zinc Oxide", "Niacinamide"],
+    "bestFor": "Sun protection for sensitive skin",
+    "useTime": "Morning",
+    "image": "https://static.thcdn.com/images/large/original//productimg/1600/1600/11370303-8395107124712024.jpg"
+  },
+  {
+    "name": "Paula's Choice Skin Perfecting 2% BHA Liquid Exfoliant",
+    "price": 29.5,
+    "description": "Salicylic acid exfoliator for blackheads and enlarged pores",
+    "keyIngredients": ["Salicylic Acid", "Green Tea Extract"],
+    "bestFor": "Exfoliation",
+    "useTime": "Evening",
+    "image": "https://www.paulaschoice.com/dw/image/v2/BBNX_PRD/on/demandware.static/-/Sites-pc-catalog/default/dwb8a94748/images/products/2-percent-bha-liquid-exfoliant-2010-L.png?sw=2000&sfrm=png"
+  },
+  {
+    "name": "Vanicream Moisturizing Cream",
+    "price": 13.99,
+    "description": "Rich, gentle moisturizing cream for sensitive skin",
+    "keyIngredients": ["Petrolatum", "Glycerin"],
+    "bestFor": "Dry and sensitive skin",
+    "useTime": "Morning and evening",
+    "image": "https://target.scene7.com/is/image/Target/GUEST_f0991ddd-caad-4b95-9437-39305eba1f2d?wid=488&hei=488&fmt=pjpeg"
+  },
+  {
+    "name": "Bioderma Sensibio H2O Micellar Water",
+    "price": 14.9,
+    "description": "Gentle, non-rinse micellar water cleanser for sensitive skin",
+    "keyIngredients": ["Micelles", "Cucumber Extract"],
+    "bestFor": "Makeup removal",
+    "useTime": "Evening",
+    "image": "https://www.bioderma.us/sites/us/files/styles/fancybox_2000_2000/public/products/%7B40387%7D_%7B%7D_%7B28709W%7D.png.webp?itok=NrTIEgOD"
+  },
+  {
+    "name": "First Aid Beauty Ultra Repair Cream",
+    "price": 34.0,
+    "description": "Intense hydration for dry, distressed skin",
+    "keyIngredients": ["Colloidal Oatmeal", "Shea Butter"],
+    "bestFor": "Very dry skin",
+    "useTime": "Morning and evening",
+    "image": "https://m.media-amazon.com/images/I/61cQmKA-SQL.jpg"
+  },
+  {
+    "name": "Pixi Glow Tonic",
+    "price": 15.0,
+    "description": "Glycolic acid toner for radiant skin",
+    "keyIngredients": ["Glycolic Acid", "Aloe Vera"],
+    "bestFor": "Dull skin",
+    "useTime": "Evening",
+    "image": "https://m.media-amazon.com/images/I/61lw7881TNL.jpg"
+  },
+  {
+    "name": "Mario Badescu Drying Lotion",
+    "price": 17.0,
+    "description": "Spot treatment for acne with sulfur and salicylic acid",
+    "keyIngredients": ["Sulfur", "Salicylic Acid"],
+    "bestFor": "Acne-prone skin",
+    "useTime": "Evening",
+    "image": "https://www.mariobadescu.com/cdn/shop/files/icjjh2t3kqeaitmlbyuj_e596933e-0442-4fba-9953-fe5c5ab1b007.jpg?v=1702450603&width=1946"
+  }
+]
