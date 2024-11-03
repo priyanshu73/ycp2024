@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/Components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 // import { ScrollArea } from '@/Components/ui/scroll-area';

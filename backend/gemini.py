@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai
+import json
 
 # Configure API
 api_key = "AIzaSyD0FFOMjLwM8f_7r-khltIh8bx1lnwlss8"
@@ -48,46 +49,13 @@ def get_skin_analysis_report():
     """Return the stored skin analysis report"""
     return skin_analysis_report
 
-def get_personalized_skin_advice(user_condition, skin_type, concerns, age=None, gender=None):
-    """
-    Get personalized skin advice by combining user information with a template prompt
-    Args:
-        user_condition (str): User's current skin condition/issues
-        skin_type (str): User's skin type (e.g., oily, dry, combination)
-        concerns (str): Specific skin concerns
-        age (str, optional): User's age
-        gender (str, optional): User's gender
-    Returns:
-        str: AI-generated personalized skin care advice
-    """
-    # Create a comprehensive prompt template
-    prompt_template = f"""
-Based on the following user information, provide a brief clear and personalized skin care analysis in bullet points make it short like atmost 10 lines and treatment plan:
 
-User Profile:
-- Skin Type: {skin_type}
-- Current Skin Condition: {user_condition}
-- Main Concerns: {concerns}
-{f'- Age: {age}' if age else ''}
-{f'- Gender: {gender}' if gender else ''}
 
-Please provide:
-1. A detailed analysis of their skin condition
-2. A personalized morning and evening skincare routine
-3. Specific product recommendations and ingredients to look for
-4. Treatment plan for their main concerns
-5. Lifestyle and dietary recommendations
-6. Additional tips and precautions
-
-Please format the response in a clear, organized manner with appropriate sections and bullet points.
-"""
-    return get_ai_response(prompt_template)
-
+import json
 
 def get_personalized_skin_advice(user_condition, skin_type, concerns, productList=None, age=None, gender=None):
     """
-    Get personalized skin advice by combining user information with a template prompt.
-    If a productList is provided, the AI will include suggestions from the list.
+    Get personalized skin advice with error handling and response validation.
     Args:
         user_condition (str): User's current skin condition/issues
         skin_type (str): User's skin type (e.g., oily, dry, combination)
@@ -96,74 +64,152 @@ def get_personalized_skin_advice(user_condition, skin_type, concerns, productLis
         age (str, optional): User's age
         gender (str, optional): User's gender
     Returns:
-        str: AI-generated personalized skin care advice with product suggestions if available
+        dict: AI-generated personalized skincare advice or a default structured response
     """
-    # Add product list to the prompt if provided
-    product_suggestions = (
-        f"\n\nThe following products are available in the store:\n{', '.join(productList)}\n"
-        "Please suggest the best products from this list that match the skin care advice."
+    
+    product_context = (
+        f"\n\nAvailable products for recommendations:\n{', '.join(productList)}"
     ) if productList else ""
 
-    # Create a concise and clear prompt template for the AI
     prompt_template = f"""
-Based on the following user information, provide a brief, clear, and personalized skin care analysis in bullet points (up to 10 lines) and treatment plan:
+Please respond ONLY with a valid JSON object containing skincare recommendations. The response should start with '{{' and end with '}}' and follow this exact structure:
 
-User Profile:
+{{
+    "overview": {{
+        "condition": "{skin_type} skin with {user_condition}",
+    }},
+    "routine": {{
+        "morning": [
+            "Gentle cleanser",
+            "Hydrating toner",
+            "Moisturizer",
+            "Sunscreen"
+        ],
+        "evening": [
+            "Oil-based cleanser",
+            "Gentle cleanser",
+            "Treatment serum",
+            "Night cream"
+        ]
+    }},
+    "diet": {{
+        "recommendations": [
+            "Increase water intake",
+            "Eat omega-3 rich foods",
+            "Include antioxidant-rich fruits",
+            "Add collagen-boosting foods"
+        ]
+    }},
+    "products": [
+        {{
+            "name": "Sample Gentle Cleanser",
+            "price": 24.99,
+            "description": "Gentle, non-stripping cleanser for {skin_type} skin",
+            "keyIngredients": [
+                "Ceramides",
+                "Hyaluronic Acid",
+                "Glycerin"
+            ],
+            "bestFor": "Daily cleansing",
+            "useTime": "Morning and evening"
+        }}
+    ]
+}}
+
+Based on:
 - Skin Type: {skin_type}
-- Current Skin Condition: {user_condition}
-- Main Concerns: {concerns}
+- Current Condition: {user_condition}
+- Concerns: {concerns}
 {f'- Age: {age}' if age else ''}
 {f'- Gender: {gender}' if gender else ''}
+{product_context}
 
-Please provide:
-1. A detailed analysis of their skin condition
-2. A personalized morning and evening skincare routine
-3. Specific product recommendations and ingredients to look for, based on available store products
-4. Treatment plan for their main concerns
-5. Lifestyle and dietary recommendations
-6. Additional tips and precautions
+Provide ONLY the JSON response, no additional text or explanations."""
 
-{product_suggestions}
+    try:
+        # Get AI response
+        response = get_ai_response(prompt_template)
+        
+        # Debug: Print raw response
+        print("Raw AI Response:", response)
+        
+        # Try to parse the response as JSON
+        try:
+            parsed_data = json.loads(response)
+            return parsed_data
+        except json.JSONDecodeError as e:
+            # If JSON parsing fails, create a basic valid response
+            print(f"JSON Parsing Error: {e}")
+            print("Response that caused error:", response)
+            
+            # Return a default structured response
+            return {
+                "overview": {
+                    "condition": f"{skin_type} skin with {user_condition}",
+                },
+                "routine": {
+                    "morning": [
+                        "Gentle cleanser",
+                        "Moisturizer",
+                        "Sunscreen"
+                    ],
+                    "evening": [
+                        "Cleanser",
+                        "Treatment",
+                        "Night cream"
+                    ]
+                },
+                "diet": {
+                    "recommendations": [
+                        "Increase water intake",
+                        "Eat more fruits and vegetables",
+                        "Include healthy fats",
+                        "Avoid processed foods"
+                    ]
+                },
+                "products": [
+                    {
+                        "name": "Basic Gentle Cleanser",
+                        "price": 19.99,
+                        "description": f"Gentle cleanser for {skin_type} skin",
+                        "keyIngredients": ["Ceramides", "Glycerin"],
+                        "bestFor": "Daily cleansing",
+                        "useTime": "Morning and evening"
+                    }
+                ]
+            }
+            
+    except Exception as e:
+        print(f"General Error: {e}")
+        # Return the same default response structure as above
+        return {
+            "overview": {
+                "condition": f"{skin_type} skin with {user_condition}",
+            },
+            "routine": {
+                "morning": ["Gentle cleanser", "Moisturizer", "Sunscreen"],
+                "evening": ["Cleanser", "Treatment", "Night cream"]
+            },
+            "diet": {
+                "recommendations": [
+                    "Increase water intake",
+                    "Eat more fruits and vegetables",
+                    "Include healthy fats",
+                    "Avoid processed foods"
+                ]
+            },
+            "products": [
+                {
+                    "name": "Basic Gentle Cleanser",
+                    "price": 19.99,
+                    "description": f"Gentle cleanser for {skin_type} skin",
+                    "keyIngredients": ["Ceramides", "Glycerin"],
+                    "bestFor": "Daily cleansing",
+                    "useTime": "Morning and evening"
+                }
+            ]
+        }
 
-Please format the response in a clear, organized manner with appropriate sections and bullet points.
-"""
-    return get_ai_response(prompt_template)
-
-#import this method in the ai model file,
-def generate_skin_advice(user_condition, skin_type, concerns, age=None, gender=None):
-    """
-    A function to be called externally for generating skin advice.
-    Args:
-        user_condition (str): User's current skin condition/issues
-        skin_type (str): User's skin type (e.g., oily, dry, combination)
-        concerns (str): Specific skin concerns
-        age (str, optional): User's age
-        gender (str, optional): User's gender
-    Returns:
-        str: The personalized skin care advice generated by the AI
-    """
-    response = get_personalized_skin_advice(user_condition, skin_type, concerns, age, gender)
-    print("Personalized Skin Analysis:")
-    print(response)
-    return response
-
-
-def generate_skin_advice_store(user_condition, skin_type, concerns, productList, age=None, gender=None):
-    """
-    A function to be called externally for generating skin advice.
-    Args:
-        user_condition (str): User's current skin condition/issues
-        skin_type (str): User's skin type (e.g., oily, dry, combination)
-        concerns (str): Specific skin concerns
-        age (str, optional): User's age
-        gender (str, optional): User's gender
-    Returns:
-        str: The personalized skin care advice generated by the AI
-    """
-    response = get_personalized_skin_advice(user_condition, skin_type, concerns, age, gender)
-    print("Personalized Skin Analysis:")
-    print(response)
-    return response
 
 def generate_skin_advice_store(user_condition, skin_type, concerns, productList, age=None, gender=None):
     """
@@ -191,13 +237,13 @@ if __name__ == "__main__":
         "Hyaluronic Acid Moisturizer", "SPF 50 Sunscreen"
     ]
     
-    response = generate_skin_advice_store(
-        user_condition="Occasional acne breakouts with some dark spots",
+    response = get_personalized_skin_advice(
+        user_condition="Dark circles",
         skin_type="Combination",
-        concerns="Acne scarring and uneven texture",
-        productList=store_products,
+        concerns="Very dark puffy eyes",
+        productList=[],
         age="25",
-        gender="Female"
+        gender="Male"
     )
 
     # Print the stored report
@@ -205,18 +251,4 @@ if __name__ == "__main__":
     print("\nStored Report:")
     print(stored_report)
 
-# Entry point for standalone run
-if __name__ == "__main__":
-    # Example usage
-    response = generate_skin_advice(
-        user_condition="Occasional acne breakouts with some dark spots",
-        skin_type="Combination",
-        concerns="Acne scarring and uneven texture",
-        age="25",
-        gender="Female"
-    )
 
-    # Print the stored report
-    stored_report = get_skin_analysis_report()
-    print("\nStored Report:")
-    print(stored_report)

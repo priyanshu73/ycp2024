@@ -7,7 +7,8 @@ import models
 import uvicorn
 from dotenv import load_dotenv
 import os
-import skin_analysis
+from aiModel import skin_analysis
+
 
 # Load environment variables
 load_dotenv()
@@ -48,8 +49,7 @@ async def analyze_skin(
             f.write(image_content)
         #AI PART
         
-        
-        
+    
         
         # Basic image information for testing
         image_info = {
@@ -62,6 +62,8 @@ async def analyze_skin(
             "file_size_kb": round(len(image_content) / 1024, 2)
         }
         
+        
+        skinReport = skin_analysis
         # Test response
         response = {
             "status": "success",
