@@ -43,7 +43,7 @@ const SkincareAnalysisDashboard = () => {
   };
 
   return (
-    <div className="bg-gray-200 h-screen w-full">
+    <div className="bg-gray-200 100-vh w-full">
       <div className="w-full h-full max-w-6xl mx-auto p-6 flex flex-col space-y-6">
         <header className="text-center mb-8">
           <div className="text-2xl">
@@ -173,7 +173,7 @@ const SkincareAnalysisDashboard = () => {
               </div>
             </TabsContent>
 
-            <ScrollArea className="h-full bg-gray-200 rounded-lg p-4">
+            <ScrollArea className="h-screen bg-gray-200 rounded-lg p-4">
               <TabsContent value="products">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {productsData.map((product, index) => (
