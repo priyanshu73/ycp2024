@@ -13,15 +13,25 @@ function FormPage() {
   const image = location.state; // This should be the image file
 
   // State for each question
-  const [isOily, setIsOily] = useState("not at all");
-  const [isDry, setIsDry] = useState("not at all");
-  const [isIntensive, setIsIntensive] = useState("not at all");
+  const [isOily, setIsOily] = useState("Not at all");
+  const [isDry, setIsDry] = useState("Not at all");
+  const [isIntensive, setIsIntensive] = useState("Not at all");
+
+  const getMappedSkinType = (skinType: string) => {
+    if (skinType === "Not at all" || skinType === "Unlikely") {
+      return "Dry";
+    } else if (skinType === "Somewhat") {
+      return "Combination";
+    } else {
+      return "Oily";
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const data = new FormData();
     data.append("name", "Jason");
-    data.append("skin_type", isOily);
+    data.append("skin_type", getMappedSkinType(isOily));
     data.append("age", "25");
     data.append("gender", "male");
 
