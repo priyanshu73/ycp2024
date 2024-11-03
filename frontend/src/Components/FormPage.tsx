@@ -20,16 +20,16 @@ function FormPage() {
           </p>
         </header>
         <p className="text-lg text-gray-500 font-semibold mb-6 mt-6">
-          On a scale of 1 to 5, how oily is your skin?
+          Do you consider your skin to be oily?
         </p>
         <RadioButtonGroup />
         <p className="text-lg text-gray-500 font-semibold mb-6 mt-16">
-          On a scale of 1 to 5, how dry is your skin?
+          Do you consider your skin to be dry?
         </p>
         <RadioButtonGroup />
 
         <p className="text-lg text-gray-500 font-semibold mb-6 mt-16">
-          On a scale of 1 to 5, how intensive is your skincare routine?
+          Would you describe the intensity of your skincare as intensive?
         </p>
         <RadioButtonGroup />
       </div>

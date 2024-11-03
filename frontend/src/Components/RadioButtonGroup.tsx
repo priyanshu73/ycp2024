@@ -21,11 +21,11 @@ const RadioButtonGroup = () => {
   };
 
   const options = [
-    { value: "never", label: "Never" },
-    { value: "sometimes", label: "Sometimes" },
-    { value: "often", label: "Often" },
-    { value: "usually", label: "Usually" },
-    { value: "always", label: "Always" },
+    { value: "not at all", label: "Not at all" }, // Replaced "Never" with "Seldom"
+    { value: "unlikely", label: "Unlikely" },
+    { value: "somewhat", label: "Somewhat" },
+    { value: "likely", label: "Likely" },
+    { value: "definitely", label: "Definitely" },
   ];
 
   return (
