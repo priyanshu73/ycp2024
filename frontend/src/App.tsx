@@ -5,6 +5,8 @@ import GradientButton from "./Components/GradientButton";
 import GradientText from "./Components/GradientText"; // Adjust the path as necessary
 import CameraPage from "./Components/CameraPage";
 import FormPage from "./Components/FormPage";
+import TextWidget from "./Components/TextWidget";
+import ReportPage from "./Components/ReportPage";
 // import { getConfig } from './config'; // Import getConfig function from config.ts
 // import { isElectron } from "./environment";
 
@@ -38,6 +40,7 @@ function App() {
         />
         <Route path="/camera" element={<CameraPage />} />
         <Route path="/form" element={<FormPage />} />
+        <Route path="/report" element={<ReportPage />} />
       </Routes>
     </Router>
   );
