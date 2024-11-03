@@ -172,7 +172,11 @@ export const CameraPage: React.FC = () => {
             />
             <GradientButton
               buttonName="Submit"
-              onClick={() => navigate("/form", { state: image })}
+              onClick={() =>
+                navigate("/form", {
+                  state: dataURLtoFile(image, `${name}_photo.jpg`),
+                })
+              }
             />
           </div>
         ) : (
