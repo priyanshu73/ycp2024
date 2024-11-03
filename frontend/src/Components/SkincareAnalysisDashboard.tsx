@@ -13,9 +13,12 @@ import {
 import GradientText from "./GradientText";
 import { useState } from "react";
 import productsData from "@/assets/Products.json";
+import { useLocation } from "react-router-dom";
 
 const SkincareAnalysisDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
+  const location = useLocation();
+  const { responseData } = location.state || {}; // Access the response data
 
   // Analysis data (mock data)
   const analysisData = {
@@ -82,7 +85,7 @@ const SkincareAnalysisDashboard = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-lg font-medium">
-                      {analysisData.condition}
+                      {responseData.dermaReport.report.overview.condition}
                     </p>
                   </CardContent>
                 </Card>
@@ -116,12 +119,14 @@ const SkincareAnalysisDashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
-                    {analysisData.dietaryRecommendations.map((rec, index) => (
-                      <li key={index} className="flex items-center gap-3">
-                        <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                        {rec}
-                      </li>
-                    ))}
+                    {responseData.dermaReport.report.diet.recommendations.map(
+                      (rec: any, index: any) => (
+                        <li key={index} className="flex items-center gap-3">
+                          <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+                          {rec}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </CardContent>
               </Card>
@@ -138,14 +143,16 @@ const SkincareAnalysisDashboard = () => {
                   </CardHeader>
                   <CardContent>
                     <ol className="space-y-4">
-                      {analysisData.routineSteps.morning.map((step, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <span className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-sm font-medium text-blue-600">
-                            {index + 1}
-                          </span>
-                          {step}
-                        </li>
-                      ))}
+                      {responseData.dermaReport.report.routine.morning.map(
+                        (step: any, index: any) => (
+                          <li key={index} className="flex items-center gap-3">
+                            <span className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center text-sm font-medium text-blue-600">
+                              {index + 1}
+                            </span>
+                            {step}
+                          </li>
+                        )
+                      )}
                     </ol>
                   </CardContent>
                 </Card>
@@ -159,14 +166,16 @@ const SkincareAnalysisDashboard = () => {
                   </CardHeader>
                   <CardContent>
                     <ol className="space-y-4">
-                      {analysisData.routineSteps.evening.map((step, index) => (
-                        <li key={index} className="flex items-center gap-3">
-                          <span className="h-6 w-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
-                            {index + 1}
-                          </span>
-                          {step}
-                        </li>
-                      ))}
+                      {responseData.dermaReport.report.routine.evening.map(
+                        (step: any, index: any) => (
+                          <li key={index} className="flex items-center gap-3">
+                            <span className="h-6 w-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+                              {index + 1}
+                            </span>
+                            {step}
+                          </li>
+                        )
+                      )}
                     </ol>
                   </CardContent>
                 </Card>

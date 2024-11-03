@@ -9,7 +9,7 @@ import GradientText from "./GradientText";
 function FormPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const endpoint = "http://127.0.0.1:8000/analyzeSkin";
+  const endpoint = "https://bfd7-192-245-87-13.ngrok-free.app/";
   const image = location.state; // This should be the image file
 
   // State for each question
@@ -41,7 +41,7 @@ function FormPage() {
 
       const responseData = await response.json();
       console.log("Success:", responseData);
-      navigate("/report"); // Navigate after successful submission
+      navigate("/report", { state: { responseData } }); // Navigate after successful submission
     } catch (error) {
       console.error("Error:", error);
     }
