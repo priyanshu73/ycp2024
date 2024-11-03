@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 interface GradientButtonProps {
-  buttonName: string; // Prop for the button text
-  to: string; // Prop for the navigation path
+  buttonName: string;
+  to: string;
 }
 
 const GradientButton: React.FC<GradientButtonProps> = ({ buttonName, to }) => {
   return (
-    <Link to={to} className="relative overflow-hidden rounded-2xl px-20 py-6">
+    <Link
+      to={to}
+      className="relative overflow-hidden rounded-2xl px-20 py-6 bg-transparent border-none focus:outline-none"
+    >
       {/* Button Body */}
       <span className="absolute inset-px z-10 flex items-center justify-center rounded-2xl bg-gray-100 bg-gradient-to-t from-neutral-300 text-gray-800">
         {buttonName}

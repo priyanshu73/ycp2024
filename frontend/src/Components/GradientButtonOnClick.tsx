@@ -9,11 +9,11 @@ const GradientButton: React.FC<GradientButtonProps> = ({
 }) => {
   return (
     <button
-      className="relative overflow-hidden rounded-lg px-20 py-6 bg-transparent border-none outline-none"
+      className="relative overflow-hidden rounded-2xl px-20 py-6 bg-transparent border-none outline-none"
       onClick={onClick}
     >
       {/* Button Body */}
-      <span className="absolute inset-px z-10 flex items-center justify-center rounded-lg bg-gray-100 bg-gradient-to-t from-neutral-300 text-gray-800">
+      <span className="absolute inset-px z-10 flex items-center justify-center rounded-2xl bg-gray-100 bg-gradient-to-t from-neutral-300 text-gray-800">
         {buttonName}
       </span>
 
