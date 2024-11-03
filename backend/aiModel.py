@@ -7,7 +7,7 @@ model = tf.keras.models.load_model("path/to/your_skin_condition_model.h5")
 
 def skin_analysis(filename: str):
     # Path where images are stored on the server
-    image_path = f"backend_images/{filename}"
+    image_path = f"uploads/{filename}"
     
     try:
         # Load and preprocess the image
