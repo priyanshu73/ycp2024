@@ -5,8 +5,8 @@ import GradientButton from "./Components/GradientButton";
 import GradientText from "./Components/GradientText"; // Adjust the path as necessary
 import CameraPage from "./Components/CameraPage";
 import FormPage from "./Components/FormPage";
-import { getConfig } from './config'; // Import getConfig function from config.ts
-import { isElectron } from "./environment";
+// import { getConfig } from './config'; // Import getConfig function from config.ts
+// import { isElectron } from "./environment";
 
 
 function App() {

@@ -7,10 +7,16 @@
     "dev:web": "vite --host",
     "dev:electron": "cross-env ELECTRON_MODE=true vite",
     "dev": "vite",
-    "build:web": "tsc && vite build",
-    "build": "tsc && vite build && electron-builder",
+    "build": "electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+  },
+  "build": {
+    "appId": "com.example.app",
+    "linux": {
+      "target": "AppImage",
+      "icon": "path/to/icon.png"
+    }
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -27,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
+    "7zip-bin": "^5.2.0",
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
     "electron": "^30.0.1",

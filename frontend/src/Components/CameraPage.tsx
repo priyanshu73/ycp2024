@@ -44,6 +44,7 @@ export const CameraPage: React.FC = () => {
   const [imageInfo, setImageInfo] = useState<ImageInfo | null>(null);
 
   const webcamRef = useRef<Webcam>(null);
+  console.log(status, isLoading, imageInfo);
 
   const dataURLtoFile = (dataurl: string, filename: string): File => {
     const arr = dataurl.split(',');
