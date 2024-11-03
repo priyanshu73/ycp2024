@@ -26,18 +26,14 @@ function App() {
         <Route
           path="/"
           element={
-            isElectronApp ? (
-              <div className="h-screen w-screen flex flex-col items-center justify-center bg-gray-200 gap-2 font-menlo">
-                <GradientText
-                  text="Dermafyr"
-                  className="text-8xl mb-2 transition-none"
-                />
-                <GradientButton buttonName="Get Started" to="/form" />{" "}
-                {/* Updated to use to */}
-              </div>
-            ) : (
-              <h1>not an electron</h1>
-            )
+            <div className="h-screen w-screen flex flex-col items-center justify-center bg-gray-200 gap-2 font-menlo">
+              <GradientText
+                text="Dermafyr"
+                className="text-8xl mb-2 transition-none"
+              />
+              <GradientButton buttonName="Get Started" to="/camera" />{" "}
+              {/* Updated to use to */}
+            </div>
           }
         />
         <Route path="/camera" element={<CameraPage />} />
