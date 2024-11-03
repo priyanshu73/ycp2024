@@ -5,6 +5,8 @@ import GradientButton from "./Components/GradientButton";
 import GradientText from "./Components/GradientText"; // Adjust the path as necessary
 import CameraPage from "./Components/CameraPage";
 import FormPage from "./Components/FormPage";
+import Login from "./Components/Login";
+import { Auth0ProviderWithNavigate } from "./auth/auth-provider";
 // // import { getConfig } from './config'; // Import getConfig function from config.ts
 // // import { isElectron } from "./environment";
 
@@ -22,6 +24,7 @@ function App() {
   // const config = getConfig();
   return (
     <Router>
+      <Auth0ProviderWithNavigate> 
       <Routes>
         <Route
           path="/"
@@ -31,14 +34,25 @@ function App() {
                 text="Dermafyr"
                 className="text-8xl mb-2 transition-none"
               />
-              <GradientButton buttonName="Get Started" to="/camera" />{" "}
-              {/* Updated to use to */}
+              {isElectronApp ? 
+              <GradientButton buttonName="Get Started" to="/camera" />
+              : <Login />
+              }    
             </div>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            
+              <Login />
+            
           }
         />
         <Route path="/camera" element={<CameraPage />} />
         <Route path="/form" element={<FormPage />} />
       </Routes>
+      </Auth0ProviderWithNavigate>
     </Router>
   );
 }
