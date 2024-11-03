@@ -5,7 +5,7 @@ const electronAPI = {
   ipcRenderer: {
     on(...args) {
       const [channel, listener] = args;
-      return electron.ipcRenderer.on(channel, (event, ...args2) => listener(...args2));
+      return electron.ipcRenderer.on(channel, (...args2) => listener(...args2));
     },
     off(...args) {
       const [channel, ...omit] = args;

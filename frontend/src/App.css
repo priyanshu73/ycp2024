@@ -4,38 +4,82 @@
   margin: 0; /* Remove auto margin to prevent centering */
   padding: 0; /* Remove padding to use full height and width */
   text-align: center; /* Keep text centered */
- }
- 
- .logo {
+}
+
+.logo {
   height: 6em;
   padding: 1.5em; /* Adjust if needed, this is fine for logo spacing */
   will-change: filter;
   transition: filter 300ms;
- }
- .logo:hover {
+}
+.logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
- }
- .logo.react:hover {
+}
+.logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
- }
- 
- .card {
+}
+
+.card {
   /* Consider using flex for the card if you want to center content */
   display: flex; /* Enables flex layout */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   padding: 0; /* Remove padding to maximize space */
- }
- 
- .read-the-docs {
+}
+
+.read-the-docs {
   color: #888;
- }
- 
- .mirror {
+}
+
+.mirror {
   transform: scaleX(-1); /* Flips the image horizontally */
- }
- 
- .text-outline {
+}
+
+.text-outline {
   text-shadow: 0px 1px 1px gray, 1px 0px 1px gray, 0px -1px 1px gray,
     -1px 0px 1px gray;
- }
+}
+
+.text-min-width {
+  width: 500px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.btn {
+  transition: color 250ms ease-out, box-shadow 250ms ease-in;
+  position: relative; /* Ensure positioning for other potential styles */
+  z-index: 1; /* Ensure buttons stack above any background effects */
+  /* Optional: add margin or padding to adjust space around buttons */
+}
+
+.btn:hover {
+  box-shadow: inset 0 30px 30px -20px rgba(50, 50, 50, 0.02); /* Shadow applied only to buttons on hover */
+}
+
+/* Keep the input styles for checked state but remove the background shadow effect */
+input:checked + .btn {
+  color: rgba(0, 0, 0, 0.72);
+  /* Background image can be retained or modified if needed */
+  background-image: linear-gradient(
+    to top,
+    rgba(25, 25, 25, 0) 65%,
+    rgba(25, 25, 25, 0.08)
+  );
+  box-shadow: inset 0 10px 50px rgba(25, 25, 25, 0.08); /* Ensure this shadow is only on the button */
+}
+
+/* Prevent the checkmark from appearing */
+input:checked + .btn:after {
+  content: ""; /* Keep it empty or comment out */
+  /* Other properties can remain the same or be adjusted */
+}
