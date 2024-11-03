@@ -14,9 +14,23 @@ import SkincareAnalysisDashboard from "./Components/SkincareAnalysisDashboard";
 import { motion } from "framer-motion";
 import Login from "./Components/Login";
 import { Home } from "lucide-react";
+import { Auth0ProviderWithNavigate } from "./auth/auth-provider";
+import { isElectron } from "./environment";
 
 // Separate HomePage component
 function HomePage() {
+  const [isElectronApp, setIsElectronApp] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    console.log("Window electron:", "electron" in window);
+    console.log("Process type:", window?.process?.type);
+    console.log("User Agent:", navigator.userAgent);
+
+    const electronCheck = "electron" in window;
+    console.log(electronCheck);
+    setIsElectronApp(electronCheck);
+    console.log("Is Electron app:", electronCheck);
+  }, []);
   const navigate = useNavigate(); // useNavigate is now used within Router context
 
   return (
@@ -33,10 +47,15 @@ function HomePage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
       >
-        <GradientButton
-          buttonName="Get Started"
-          onClick={() => navigate("/camera")}
-        />
+        {" "}
+        {isElectronApp ? (
+          <GradientButton
+            buttonName="Get Started"
+            onClick={() => navigate("/camera")}
+          />
+        ) : (
+          <Login />
+        )}
       </motion.div>
     </div>
   );
@@ -44,28 +63,17 @@ function HomePage() {
 
 // Main App component
 function App() {
-  const [isElectronApp, setIsElectronApp] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    console.log("Window electron:", "electron" in window);
-    console.log("Process type:", window?.process?.type);
-    console.log("User Agent:", navigator.userAgent);
-
-    const electronCheck = "electron" in window;
-    console.log(electronCheck);
-    setIsElectronApp(electronCheck);
-    console.log("Is Electron app:", electronCheck);
-  }, []);
-
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/camera" element={<CameraPage />} />
-        <Route path="/form" element={<FormPage />} />
-        <Route path="/report" element={<SkincareAnalysisDashboard />} />
-      </Routes>
+      <Auth0ProviderWithNavigate>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/camera" element={<CameraPage />} />
+          <Route path="/form" element={<FormPage />} />
+          <Route path="/report" element={<SkincareAnalysisDashboard />} />
+        </Routes>
+      </Auth0ProviderWithNavigate>
     </Router>
   );
 }
