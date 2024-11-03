@@ -5,12 +5,14 @@ import GradientButton from "./GradientButtonOnClick";
 import RadioButtonGroup from "./RadioButtonGroup";
 import { useLocation, useNavigate } from "react-router-dom";
 import GradientText from "./GradientText";
+import Loader from "./Loader";
 
 function FormPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const endpoint = "https://bfd7-192-245-87-13.ngrok-free.app/";
   const image = location.state; // This should be the image file
+  const [loading, setLoading] = useState(false); // Loading state
 
   // State for each question
   const [isOily, setIsOily] = useState("Not at all");
@@ -28,6 +30,7 @@ function FormPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
     const data = new FormData();
     data.append("name", "Jason");
@@ -97,12 +100,19 @@ function FormPage() {
             onChange={(e) => setIsIntensive(e.target.value)}
             questionId="skinIntensive" // Unique name for this group
           />
-
-          <GradientButton
-            buttonName="Submit"
-            type="submit" // Change to type="submit" to trigger form submission
-            onClick={() => {}}
-          />
+          <div className="mt-8">
+            {loading ? (
+              // Render a loading spinner when loading is true
+              <Loader />
+            ) : (
+              // Render the button when loading is false
+              <GradientButton
+                buttonName="Submit"
+                type="submit"
+                onClick={() => {}}
+              />
+            )}
+          </div>
         </form>
       </div>
     </div>
