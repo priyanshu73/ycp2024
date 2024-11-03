@@ -48,6 +48,9 @@ async def analyze_skin(
             f.write(image_content)
         #AI PART
         
+        
+        
+        
         # Basic image information for testing
         image_info = {
             "filename": image.filename,

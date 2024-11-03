@@ -16,6 +16,7 @@ function App() {
     console.log("User Agent:", navigator.userAgent);
 
     const electronCheck = "electron" in window;
+    console.log(electronCheck)
     setIsElectronApp(electronCheck);
     console.log("Is Electron app:", electronCheck);
   }, []);
@@ -26,20 +27,18 @@ function App() {
         <Route
           path="/"
           element={
-            isElectronApp ? (
+            (
               <div className="h-screen w-screen flex flex-col items-center justify-center bg-gray-200 gap-2 font-menlo">
                 <GradientText
                   text="Dermafyr"
                   className="text-8xl mb-2 transition-none"
                 />
-                <GradientButton buttonName="Get Started" to="/form" />{" "}
-                {/* Updated to use to */}
+                <GradientButton buttonName="Get Started" to="/form" />
               </div>
-            ) : (
-              <h1>not an electron</h1>
-            )
+            ) 
           }
         />
+        
         <Route path="/camera" element={<CameraPage />} />
         <Route path="/form" element={<FormPage />} />
       </Routes>
