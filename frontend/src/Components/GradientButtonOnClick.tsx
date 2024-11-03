@@ -1,16 +1,19 @@
 interface GradientButtonProps {
   buttonName: string; // Prop for the button text
   onClick: () => void; // Prop for the click handler
+  type?: "submit" | "reset" | "button";
 }
 
 const GradientButton: React.FC<GradientButtonProps> = ({
   buttonName,
   onClick,
+  type,
 }) => {
   return (
     <button
       className="relative overflow-hidden rounded-2xl px-20 py-6 bg-transparent border-none outline-none"
       onClick={onClick}
+      type={type}
     >
       {/* Button Body */}
       <span className="absolute inset-px z-10 flex items-center justify-center rounded-2xl bg-gray-100 bg-gradient-to-t from-neutral-300 text-gray-800">

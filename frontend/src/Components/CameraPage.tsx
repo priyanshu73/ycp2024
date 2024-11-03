@@ -172,7 +172,7 @@ export const CameraPage: React.FC = () => {
             />
             <GradientButton
               buttonName="Submit"
-              onClick={() => navigate("/form")}
+              onClick={() => navigate("/form", { state: image })}
             />
           </div>
         ) : (
