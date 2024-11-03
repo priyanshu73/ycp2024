@@ -48,6 +48,7 @@ export const CameraPage: React.FC = () => {
   const navigate = useNavigate();
 
   const webcamRef = useRef<Webcam>(null);
+  console.log(status, isLoading, imageInfo);
 
   const dataURLtoFile = (dataurl: string, filename: string): File => {
     const arr = dataurl.split(",");
