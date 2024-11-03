@@ -10,7 +10,7 @@ import Loader from "./Loader";
 function FormPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const endpoint = "https://bfd7-192-245-87-13.ngrok-free.app/";
+  const endpoint = "https://30af-192-245-87-13.ngrok-free.app/analyzeSkin";
   const image = location.state; // This should be the image file
   const [loading, setLoading] = useState(false); // Loading state
 
