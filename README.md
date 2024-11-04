@@ -70,5 +70,6 @@ Implement AR features for virtual product try-ons
 Partner with dermatologists for validated recommendation systems
 Create a community feature for users to share their skincare journeys
 
+## Demo Video:
 [![Demo Video](https://img.youtube.com/vi/3ZTVrNvTw7I/0.jpg)](https://www.youtube.com/watch?v=3ZTVrNvTw7I)
 
