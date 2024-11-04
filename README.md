@@ -14,7 +14,8 @@ The growing accessibility gap in dermatological care inspired us to create Derma
 ## How we built it
 Frontend: React for web interface, Electron for desktop application
 Hardware: Raspberry Pi 5 for in-store kiosks
-AI/ML: Trained custom datasets for skin condition recognition
+ML: Trained custom datasets for skin condition recognition with TensorFlow
+Backend: FastAPI and Gemini API to format suggestion system
 Local Processing: Integrated Llama model for offline analysis and suggestion system.
 
 Dual Architecture:
