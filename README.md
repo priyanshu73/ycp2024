@@ -12,11 +12,11 @@ The growing accessibility gap in dermatological care inspired us to create Derma
 - Operates both as in-store kiosks (at retailers like CVS and Walmart) and as a web platform
 - Processes everything offline in stores for complete privacy, efficiency, and security
 ## How we built it
-Frontend: React for web interface, Electron for desktop application
-Hardware: Raspberry Pi 5 for in-store kiosks
-ML: Trained custom datasets for skin condition recognition with TensorFlow
-Backend: FastAPI and Gemini API to format suggestion system
-Local Processing: Integrated Llama model for offline analysis and suggestion system.
+- Frontend: React for web interface, Electron for desktop application
+- Hardware: Raspberry Pi 5 for in-store kiosks
+- Transfer-Learning ML: Trained on custom datasets for skin condition recognition/classification with TensorFlow
+- Backend: FastAPI and Gemini API to format suggestion system
+- Local Processing: Integrated Llama model for offline analysis and suggestion system.
 
 Dual Architecture:
 Offline system for in-store kiosks ensuring data privacy
@@ -65,7 +65,6 @@ AI-powered compatibility checks the user's skin condition
 Predictive analysis of potential benefits or risks
 Alternative product suggestions if incompatibility is detected
 Real-time alerts for ingredients that might not suit your skin type
-
 
 Implement AR features for virtual product try-ons
 Partner with dermatologists for validated recommendation systems
