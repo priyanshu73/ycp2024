@@ -31,7 +31,7 @@ The growing accessibility gap in dermatological care inspired us to create Derma
 - Creating a user interface that feels professional yet approachable
 
 ## Accomplishments that we're proud of
-- Achieving 97% accuracy in skin condition detection
+- Achieving 91% accuracy in skin condition detection
 - Successfully implementing offline processing for complete data privacy
 - Creating a dual-platform solution that works seamlessly both in-store and online
 - Developing a system that provides immediate, actionable recommendations
